@@ -1,6 +1,6 @@
 # Amazon Linux 2 Docker Image with systemd
 
-This project includes a `Dockerfile` to build an image for using `systemd` on Amazon Linux 2 container. It also includes `docker-compose.yaml` which is a sample for starting the image.
+This repository includes a `Dockerfile` to build an image for using `systemd` on Amazon Linux 2 container. It also includes `docker-compose.yaml` which is a sample for starting the image.
 
 ## Before Using This Package
 
@@ -19,7 +19,7 @@ However, there may be some cases where you want to use `systemd` on Docker conta
 
 ## How to Use
 
-The following sections uses `docker-compose` command to build an image and start a container. If you want to start without using the `docker-compose`` command, see the next section.
+In the following sections, we use `docker-compose` command to build an image and start a container. If you want to start without using the `docker-compose`` command, go to the next chapter.
 
 ### Create and Start Containers
 
@@ -68,7 +68,7 @@ Start httpd server using `systemctl`.
 # systemctl status httpd
 ```
 
-If everything is working expected, you will be able to see Apache Test Page using your Web Browser and access to following link:
+If everything is working expected, you will be able to open an Apache Test Page using your Web Browser on localhost by accessing to following link:
 
 ```
 127.0.0.1:8080
@@ -76,16 +76,12 @@ If everything is working expected, you will be able to see Apache Test Page usin
 
 ### Stop
 
-You can stop and remove containers, networks, volumes, and images created by `up`. by following command.
+You can stop and remove containers, networks and volumes created by `up`. by following command. If you want to remove images used by services as well, add `--rmi all` option.
 
 ```
 $ docker-compose down
 ```
-
-### Stop with removing images
-
-If you want to remove images used by services as well, add `--rmi all` option.
-
+or
 ```
 $ docker-compose down --rmi all
 ```
