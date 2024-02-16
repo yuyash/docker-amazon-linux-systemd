@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  amazon-linux-2-systemd:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    cgroup: host
+    container_name: amazon-linux-2-systemd
+    image: amazon-linux-2-systemd:latest
+    network_mode: bridge
+    ports:
+      - 8080:80
+    privileged: true
+    restart: always
+    tmpfs:
+      - /run
+      - /run/lock
+    tty: true
+    volumes:
+      - /tmp/systemd:/sys/fs/cgroup:rw
+networks:
+  default:
+    name: bridge
