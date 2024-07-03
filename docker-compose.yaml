@@ -9,7 +9,7 @@ services:
     image: amazon-linux-2-systemd:latest
     network_mode: bridge
     ports:
-      - 8080:80
+      - "80:80"
     privileged: true
     restart: always
     tmpfs:

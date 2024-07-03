@@ -2,11 +2,11 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 LABEL version="1.0"
 LABEL description="Amazon Linux 2 with systemd enabled."
 
-# Packages
+# Update packages and install some base packages
 RUN yum -y update; 
 RUN yum -y groupinstall AMI
 
-# Systemd
+# Install Systemd and remove some unnecessary targets
 ENV container=docker
 RUN yum -y install systemd ; \
     cd /lib/systemd/system/sysinit.target.wants/ ; \
@@ -18,6 +18,10 @@ RUN yum -y install systemd ; \
     rm -f /lib/systemd/system/sockets.target.wants/*initctl* ; \
     rm -f /lib/systemd/system/basic.target.wants/* ; \
     rm -f /lib/systemd/system/anaconda.target.wants/*
+
+# Install httpd as an example
+RUN yum -y install httpd
+RUN ln -s /usr/lib/systemd/system/httpd.service /etc/systemd/system/multi-user.target.wants/httpd.service
 
 # Clean cache
 RUN yum -y clean all && rm -rf /var/cache
